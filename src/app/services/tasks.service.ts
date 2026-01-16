@@ -1,13 +1,11 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { NewTask, Task } from '../models/task.model';
+import { TasksApiService } from './tasks-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService {
-  private tasks: Task[] = [
-    { id: 1, titulo: 'Instalar Angular', descripcion: 'CLI + Node', completada: false },
-    { id: 2, titulo: 'Crear primera página', completada: true },
-  ];
-  private nextId = 3;
+  private tasks: Task[] = [];
+  private nextId = 1;
 
   list(): Task[] {
     return this.tasks;

@@ -5,7 +5,7 @@ import { NewTask, Task } from '../models/task.model';
 
 @Injectable({ providedIn: 'root' })
 export class TasksApiService {
-  private baseUrl = 'http://localhost:8080/api/tasks';
+  private baseUrl = 'http://localhost:8080/api/v1/tasks';
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +14,7 @@ export class TasksApiService {
   }
 
   create(data: NewTask): Observable<Task> {
-    return this.http.post<Task>(this.baseUrl, data);
+    return this.http.post<Task>(this.baseUrl, data);     
   }
 
   remove(id: number): Observable<void> {
