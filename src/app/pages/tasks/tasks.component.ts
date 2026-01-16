@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -8,9 +9,18 @@ import { TasksService } from '../../services/tasks.service';
   styleUrl: './tasks.component.css',
 })
 export class TasksComponent {
-  constructor(public tasksService: TasksService) {}
+  public tasks: Task[];
+
+  constructor(public tasksService: TasksService) {
+    this.tasks = [];
+  }
+
+  ngOnInit(): void {
+    this.tasks = this.tasksService.list();
+  }
 
   remove(id: number) {
     this.tasksService.remove(id);
+    this.ngOnInit()
   }
 }
