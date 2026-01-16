@@ -13,9 +13,8 @@ import { TasksApiService } from '../../services/tasks-api.service';
 })
 export class TaskNewComponent {
   private fb = inject(FormBuilder);
-  private tasks = inject(TasksService);
+  private tasks = inject(TasksApiService);
   private router = inject(Router);
-  private api = inject(TasksApiService);
 
   form = this.fb.nonNullable.group({
     title: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(3)]),
@@ -30,8 +29,10 @@ export class TaskNewComponent {
       return;
     }
     const task = this.form.getRawValue();
-    this.api.create(task)
-    this.tasks.add(task);
+    this.tasks.create(task).subscribe({
+      next: created => console.log("Task created with id: " + created.id),
+      error: err => console.error("Something wrong happend creating new task... ", err)
+    });
     this.router.navigateByUrl('/tareas');
   }
 

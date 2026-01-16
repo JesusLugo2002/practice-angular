@@ -18,12 +18,18 @@ export class TasksComponent {
 
   ngOnInit(): void {
     this.tasksService.list().subscribe({
-      next: tasks => this.tasks = tasks
+      next: (tasks) => (this.tasks = tasks),
     });
   }
 
   remove(id: number) {
-    this.tasksService.remove(id);
-    this.ngOnInit()
+    this.tasksService.remove(id).subscribe({
+      next: (_) => {
+        console.log(`Task with id: ${id} deleted!`);
+        this.ngOnInit();
+      },
+      error: (err) =>
+        console.error('Something wrong happend deleting a task... ', err),
+    });
   }
 }
