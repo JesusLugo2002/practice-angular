@@ -18,9 +18,9 @@ export class TaskNewComponent {
   private api = inject(TasksApiService);
 
   form = this.fb.nonNullable.group({
-    titulo: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(3)]),
-    descripcion: this.fb.nonNullable.control(''),
-    completada: this.fb.nonNullable.control(false),
+    title: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(3)]),
+    description: this.fb.nonNullable.control(''),
+    completed: this.fb.nonNullable.control(false),
   });
 
   save() {

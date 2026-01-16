@@ -4,10 +4,10 @@
   <form [formGroup]="form" (ngSubmit)="save()">
     <label>
       Título
-      <input class="input" formControlName="titulo" />
+      <input class="input" formControlName="title" />
     </label>
 
-    @if (form.controls.titulo.touched && form.controls.titulo.invalid) {
+    @if (form.controls.title.touched && form.controls.title.invalid) {
       <div class="error">
         El título es obligatorio y debe tener al menos 3 caracteres.
       </div>
@@ -15,11 +15,11 @@
 
     <label>
       Descripción (opcional)
-      <input class="input" formControlName="descripcion" />
+      <input class="input" formControlName="description" />
     </label>
 
     <label class="check">
-      <input type="checkbox" formControlName="completada" />
+      <input type="checkbox" formControlName="completed" />
       Completada
     </label>
 
