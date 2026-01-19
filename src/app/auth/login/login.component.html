@@ -1,0 +1,10 @@
+<h2>Login</h2>
+
+<form (ngSubmit)="validate()" class="form-control">
+  <label>Usuario</label>
+  <input name="username" [formControl]="username" required class="form-control"/>
+  <label>Contraseña</label>
+  <input type="password" name="password" [formControl]="password" required class="form-control"/>
+  <button type="submit" class="btn btn-success mt-3">Entrar</button>
+  <p ngIf="error">{{ error.value }}</p>
+</form>
