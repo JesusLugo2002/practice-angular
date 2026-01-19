@@ -9,9 +9,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const token = this.auth.getToken();
-    console.log("INTERCEPTO")
-    console.log(token)
 
+    // Recomendado: no interceptar login
     const isLogin = req.url.includes('/api/auth/login');
     if (isLogin) return next.handle(req);
 
