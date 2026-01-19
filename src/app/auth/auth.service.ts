@@ -12,7 +12,6 @@ export class AuthService {
 
   login(username: string, password: string) {
     const body: AuthRequest = { username, password };
-    console.log("ABCD")
 
     return this.http.post<AuthResponse>(`${this.API}/login`, body).pipe(
       tap(res => {
@@ -31,5 +30,10 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  deleteToken(): boolean {
+    localStorage.removeItem(this.TOKEN_KEY);
+    return true;
   }
 }

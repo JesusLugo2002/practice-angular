@@ -34,8 +34,10 @@ export class LoginComponent {
     }
 
     this.auth.login(credentials.username, credentials.password).subscribe({
-      next: () => this.router.navigate(['/tareas']),
-      error: () => this.error = 'Credenciales inválidas',
+      next: () => {
+        this.router.navigate(['/tareas'])
+      },
+      error: () => this.error = 'Invalid credentials',
     });
   }
 }

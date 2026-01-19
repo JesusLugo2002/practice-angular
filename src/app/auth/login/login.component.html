@@ -1,10 +1,19 @@
-<h2>Login</h2>
+<h2 class="mb-3">Login</h2>
 
-<form (ngSubmit)="validate()" class="form-control" [formGroup]="authenticationForm">
-  <label>Usuario</label>
-  <input name="username" formControlName="username" required class="form-control"/>
-  <label>Contraseña</label>
-  <input type="password" name="password" formControlName="password" required class="form-control"/>
-  <button type="submit" class="btn btn-success mt-3">Entrar</button>
-  <p ngIf="error">{{ error }}</p>
+@if (error) {
+  <div class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+}
+
+<form [formGroup]="authenticationForm" (ngSubmit)="validate()">
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username" formControlName="username">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" formControlName="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -2,4 +2,6 @@
   <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
   <a routerLink="/tareas" routerLinkActive="active">Tareas</a>
   <a routerLink="/tareas/nueva" routerLinkActive="active">Nueva tarea</a>
+  <a routerLink="/login" routerLinkActive="active">Login</a>
+  <button class="btn btn-danger" (click)="auth.logout()">Logout</button>
 </nav>
