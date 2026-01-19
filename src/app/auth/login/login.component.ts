@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -11,28 +11,31 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [ReactiveFormsModule],
 })
 export class LoginComponent {
-  username = new FormControl<string>('');
-  password = new FormControl<string>('');
-  error = new FormControl<string | null>(null);
+  authenticationForm = new FormGroup({
+    username: new FormControl<string>(""),
+    password: new FormControl<string>("")
+  })
+  error: string|null = null;
 
   constructor(private auth: AuthService, private router: Router) {}
 
   validate() {
-    this.error.setValue(null);
+    const credentials = this.authenticationForm.getRawValue();
+    this.error = null;
 
-    if (this.username.value == null) {
-      this.error.setValue('No username provided!');
+    if (credentials.username == null || credentials.username == "") {
+      this.error = 'No username provided!';
       return;
     }
 
-    if (this.password.value == null) {
-      this.error.setValue('Password required!');
+    if (credentials.password == null ||credentials.password == "") {
+      this.error = 'Password required!';
       return;
     }
 
-    this.auth.login(this.username.value, this.password.value).subscribe({
+    this.auth.login(credentials.username, credentials.password).subscribe({
       next: () => this.router.navigate(['/tareas']),
-      error: () => this.error.setValue('Credenciales inválidas'),
+      error: () => this.error = 'Credenciales inválidas',
     });
   }
 }
