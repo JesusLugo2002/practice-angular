@@ -1,10 +1,36 @@
-<nav class="nav">
-  <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-  @if (auth.isLoggedIn()) {
-    <a routerLink="/tareas" routerLinkActive="active">Tareas</a>
-    <a routerLink="/tareas/nueva" routerLinkActive="active">Nueva tarea</a>
-    <button class="btn btn-outline-danger" (click)="auth.logout()">Logout</button>
-  } @else {
-    <a routerLink="/login" routerLinkActive="active" class="btn">Login</a>
-  }
-</nav>
+<div class="container">
+  <nav class="navbar navbar-expand ">
+    <a
+      class="navbar-brand"
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Gestor de tareas</a
+    >
+    <ul class="navbar-nav">
+      @if (auth.isLoggedIn()) {
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/tareas" routerLinkActive="active"
+          >Tareas</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/tareas/nueva" routerLinkActive="active"
+          >Añadir tarea</a
+        >
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-outline-danger" (click)="auth.logout()">
+          Cerrar sesión
+        </button>
+      </li>
+      } @else {
+      <li class="nav-item">
+        <a class="btn btn-outline-primary" routerLink="/login"
+          >Iniciar sesión</a
+        >
+      </li>
+      }
+    </ul>
+  </nav>
+</div>
